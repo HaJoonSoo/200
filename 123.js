@@ -16,3 +16,46 @@
 // 따라서 반복자의 next 메소드를 호출하면, 속성 키 이름이 value와 done인 객체가 반환된다
 // 이러한 반복자 규약을 충족하는 객체를 iterator라고 한다.
 
+const items = ['j', 'a', 'v', 'a', 's', 'c', 'r', 'i', 'p', 't'];
+const seq = {
+    [Symbol.iterator](){
+        let i=0;
+        return{
+            next() {
+                const value = items[i];
+                i++;
+                const done = i > items.length;
+                return{value, done};
+            }
+        }
+    }
+};
+
+for (let s of seq) console.log(s);
+const [a, b, c, ...arr] = seq;
+console.log('a >>> ', a);
+console.log('b >>> ', b);
+console.log('c >>> ', c);
+console.log('arr >>> ', arr);
+
+// 반복 가능한 규약에 따라 작성된 객체(Iterables)는 for...of, 비구조화할당, 나머지 변수와 함께 주로 사용된다.
+// 그리고 이를 통해 next()가 호출되어, 연속된 요소들이 차례대로 반환된다.
+
+//"javascript"문자열을 문자 하나씩 나눠 배열로 구성하여 변수 arr에 대입한다
+
+// iterator 규약에 따라 Symbol.iterator 속성을 정의한다.
+// 이어서 속성값으로 매개변수를 받지 않고 객체를 반환하는 함수를 작성한다
+
+// items 배열 요소를 차례대로 연속해서 처리하는 문장이다.
+// items 변수의 i인덱스 요소값을 value에 대입하고, 대입된 후에는 인덱스 i값을 1증가시킨다
+
+// 인덱스i값이 items 배열 요소 길이보다 큰 값인지 확인한다.
+// 코드의 8라인에서 1 증가시킨뒤에 i값이 items 길이보다 크면 true, 작으면 false를 반환한다.
+// 이를 done변수에 대입한다.
+
+// value 변수와 done변수를 객체 속성으로 정의하여 반환한다.
+// value는 현재위치의 요소값이고, done는 현재 위치가 items의 끝에 도달했는지에 대한 값이다.
+// 즉 done이 true를 반환하면, 모든 작업이 끝났다는 것을 의미한다.
+// 반대로 false는 아직 반복할 요소들이 남았다는 것을 의미한다.
+// done이 항상 false라면 이 객체는 무한을 의미한다.
+
