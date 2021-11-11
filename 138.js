@@ -19,3 +19,28 @@
 
 // - catch(onReject) : 약속이 거부됐을 때 호출될 함수(onRject)를 등록한다
 
+function promiseForHomework(mustDo){
+    return new Promise((resolve, reject)=>{
+        setTimeout(() => {
+            console.log('doing homework');
+            if(mustDo) {
+                resolve({
+                    result: 'homework-result'
+                });
+            }else{
+                reject(new Error('Too lasy!'));
+            }
+        }, 3000);
+    });
+};
+
+const promiseA = promiseForHomework(true);
+console.log('promiseA created');
+
+const promiseB = promiseForHomework();
+console.log('promiseB created');
+
+promiseA.then(v => console.log(v));
+promiseB
+    .then(v => console.log(v))
+    .catch(e => console.error(e));
