@@ -13,3 +13,36 @@
 // 이 선언문과 표현식은 "함수 이해하기"에서 살펴본 선언문/표현식과 유사하다
 // 다만 async함수는 function 선언 앞에 async 키워드가 붙는다
 
+function doJob(name, person) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            if(person.stamina > 50){
+                person.stamina -= 30;
+                resolve({
+                    result : `${name} sucsess`
+                });
+            } else {
+                reject(new Error(`${name} faild`));
+            }
+        }, 1000);
+    });
+};
+
+const harin = {stamina : 100};
+
+const excute = async function() {
+    try{
+        let v = await doJob('work', harin);
+        console.log(v.result);
+        v = await doJob('study', harin);
+        console.log(v.result);
+        v = await doJob('work', harin);
+        console.log(v.result);
+        v = await doJob('study', harin);
+        console.log(v.result);
+    }catch(e) {
+        console.log(e);
+    }
+}
+
+excute();
