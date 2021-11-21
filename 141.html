@@ -45,3 +45,35 @@ HTML문서를 브라우저가 읽으면 그 문서에 해당하는 DOM이 만들
         </script>
     </body>
 </html>
+
+<!--
+    브라우저에게 HTML5 문서 버전을 알려주도록 DOCTYPE을 선언한다.
+    
+    문서의 캐릭터 셋을 UTF8로 정의하고 타이틀을 지정한다.
+
+    <body>태그 안에 <div>와 <ul> 태그들을 작성하고 마지막에 <script> 태그를 작성한다.
+    마지막에 <script> 태그를 작성하는 이유는 앞의 태그들은 브라우저가 먼저 읽어야지 자바스크립트 코드가 해석되기 전에 DOM으로 만들어져서 <script> 태그의 자바스크립트 코드에서 해당 DOM에 접근할 수 있기 때문이다.
+    
+    DOM은 document 전역 객체를 통해 접근할 수 있다 그리고 document객체는 DOM에 접근하기 위해 다양한 메소드를 제공한다.
+    getElementById는 아이디를 인자로 전달받아 해당 아이디의 요소를 문서에서 찾아 반환한다.
+    이때 <div> 태그를 자바스크립트에서 DOM 객체로 표현되고, 이 객체가 노드(Node)이다.
+    태그를 포함한 문서에 작성되는 모든 것들은 노그가 되고 이러한 노드는 여러 종류가 있다.
+
+    div El의 노드 타입은 ELEMENT_NODE이고 숫자값으로 1이다.
+    노드는 Node 타입으로 정의되어 있고, Node 타입의 정적 속성으로 모든 노드 타입이 정의되어 있다.
+
+    <div>태그는 HTMLDivElment 타입의 객체로 만들어진다. 각 태그들은 요소 노드(ELEMENT_NODE)가 되고 하위 세부 타입으오 나뉘어 진다.
+    HTMLDivElement는 HTMLElement를 상속하고 HTMLElement는 Element를 상속하고 Element는 Node를 상속한다.
+    그래서 모든 HTML 태그는 노드이자 요소이자 HTML요소이자 HTMLDiv요소이다.
+
+    각 타입은 생성자 함수로서 prototype을 통해 생성자 함수의 인스턴스들이 prototype에 정의된 속성과 메소드를 사용할 수 있다.
+    즉, Elment.prototype에는 Element 생성자 함수를 통해 만들어진 인스턴스들이 사용할 수 있는 메소드와 속성이 정의되어 있다.
+    그리고 HTMLDivElment는 Element를 상속하기 때문에 HTMLDivElement의 인스턴스인 <div>요소들은 Element의 prototype에 정의된 tagName 속성을 사용할 수 있다.
+
+    documnet 객체는 getElementById 외에 DOM에 접근할 수 있는 다양한 메소드들을 제공한다.
+    querySelector는 CSS선택자를 이용하여 HTML 요소를 선택할 수 있게 한다.
+
+    querySelectorAll 은 querySelector와 동일하게 CSS선택자를 이용할 수 있는데 querySelector는 단 하나의 요소만 선택한다면 querySelctorAll은 여러 요소를 선택할 수 있다.
+    선택된 요소들은 NodeList 타입의 인스턴스로 반환되는데 item메소드를 통해 인덱스로 선택한 요소에 접근할 수 있다.
+    그리고 CSS 선택자로 요소를 선택할 수 없으면 NodeList의 length가 0이 되고 querySelector 경우에는 null이 반환된다.
+-->
