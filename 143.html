@@ -7,3 +7,47 @@
     대다수의 어트리뷰트들은 프로퍼티와 1대 1로 대응한다.
     하지만 어떠한 어트리뷰트는 프로퍼티로는 다른 이름으로 존재하고, 어떠한 프로퍼티는 값을 바꾸면 어트리뷰트에 반영되지 않는다.
 -->
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>DOM 속성과 태그 속성 이해하기 예제</title>
+    </head>
+    <body>
+        <div id="div1" class="div-class">DIV 태그</div>
+        <input id="input1" type="text" value="jay">
+
+        <script>
+            const divEl = document.getElementById('div1');
+            const input1 = document.getElementById('input1');
+
+            console.log(divEl.hasAttribute('id'));
+            console.log(divEl.getAttribute('id'));
+            console.log(divEl.id);
+
+            div1El.removeAttribute('id');
+            console.log(divEl.id);
+            divEl.setAttribute('id', 'new-id');
+            console.log(div1El.id);
+
+            div1El.id = 'new-id-2';
+            console.log(div1El.getAttribute('id'));
+
+            console.log(div1El.getAttribute('class'))
+            console.log(div1El.class);
+            console.log(div1El.className);
+
+            div1El.setAttribute('class', 'new-div-class');
+            console.log(div1El.className);
+            div1El.className = 'new-div-class2';
+            console.log(div1El.getAttribute('class'))
+
+            const valueAttr = input1.getAttribute('value');
+            console.log(valueAttr);
+            console.log(input1.value);
+            input1.value = 'jay2';
+            console.log(input1.getAttribute('value'));
+        </script>
+    </body>
+</html>
